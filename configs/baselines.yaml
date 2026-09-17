@@ -1,0 +1,33 @@
+# Baseline strategy configurations — same weight cap, transaction cost, and seed as STGAT-DPO.
+shared:
+  max_weight_cap: 0.15
+  transaction_cost_bps: 10
+  seed: 42
+  tuning: "none — all hyperparameters fixed a priori, no grid search"
+
+BL-ML:
+  feature_set: "same 11-feature tensor as STGAT-DPO (utils.features.build_feature_tensor)"
+  view_generation: "0.6 * momentum_score + 0.4 * RSI_meanreversion_signal, 20-day lookback"
+  optimization: "Black-Litterman posterior + constrained mean-variance (bounds [0, 0.15])"
+
+RL-PPO:
+  state_dim: "N_stocks * N_features + N_stocks (current weights) + 3 + 1"
+  episodes_per_fold: 300
+  episode_length_days: 63
+  gamma: 0.99
+  gae_lambda: 0.95
+  clip_epsilon: 0.2
+  entropy_coef: 0.01
+  value_function_coef: 0.5
+  ppo_epochs_per_rollout: 4
+  minibatch_size: 32
+  learning_rate: 3e-4
+  optimizer_eps: 1e-5
+  max_grad_norm: 0.5
+  rebalance_frequency_days: 21
+  concentration_penalty_hhi: 0.1
+  note: "reward includes an HHI concentration penalty not present in STGAT-DPO's loss — a minor protocol difference disclosed in response to R1#8"
+
+classical_benchmarks:
+  strategies: ["EqualWeight", "BuyHold", "MinVariance", "MaxSharpe", "RiskParity", "InverseVolatility", "Momentum"]
+  optimization: "closed-form / convex QP, bounds [0, 0.15], no random component beyond shared SEED where applicable"

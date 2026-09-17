@@ -1,0 +1,29 @@
+Statistical Testing Summary — STGAT-DPO Portfolio Paper
+============================================================
+
+1. Jobson-Korkie (Sharpe ratio test):
+   STGAT-DPO Sharpe = 0.7156
+   STGAT-DPO vs EW: Z=0.1308, p=0.436 
+   STGAT-DPO vs MinVar: Z=-0.1482, p=0.544 
+   STGAT-DPO vs RiskPar: Z=0.2343, p=0.392 
+   STGAT-DPO vs InvVol: Z=0.5511, p=0.2755 
+   STGAT-DPO vs BH: Z=0.5218, p=0.307 
+   STGAT-DPO vs Momentum: Z=0.1986, p=0.4255 
+
+2. Huberman-Kandel spanning test:
+   STGAT-DPO vs {EW, MinVar}: F=0.0613, p=0.9406 — H₀ not rejected
+   STGAT-DPO vs {EW, MinVar, RiskPar}: F=0.0335, p=0.967 — H₀ not rejected
+   STGAT-DPO vs {EW, MinVar, InvVol}: F=0.072, p=0.9305 — H₀ not rejected
+
+3. Newey-West HAC alpha test:
+   STGAT-DPO vs Nifty50: t=20.0258, p=0.0 ★
+   STGAT-NoHMM vs Nifty50: t=14.4319, p=0.0 ★
+   STGAT-NoGAT vs Nifty50: t=26.5994, p=0.0 ★
+
+4. Bootstrap 95% CI on mean IR:
+   STGAT-DPO: [0.040, 1.076] — ONLY strategy with CI > 0
+
+Key finding: Statistical significance is limited by the 6-fold
+walk-forward structure. The bootstrap CI is the primary statistical
+claim. Economic magnitude (IR advantage +0.091 vs EW, +0.262 vs MinVar)
+and the unique positive CI constitute the evidence base.

@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+*.egg-info/
+.ipynb_checkpoints/
+data/raw/*.parquet
+outputs/checkpoints/
+outputs_causal_test/
+outputs/logs/*.log
+
+outputs/figures/*.zip
+outputs/results/*.zip

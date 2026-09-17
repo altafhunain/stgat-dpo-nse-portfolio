@@ -1,0 +1,57 @@
+Extend report — generated 2026-09-16 18:37:44.362401
+======================================================================
+ADANIPORTS.NS: OK 112 days, last=2026-08-28
+AMBUJACEM.NS: OK 112 days, last=2026-08-28
+ASIANPAINT.NS: OK 112 days, last=2026-08-28
+AXISBANK.NS: OK 112 days, last=2026-08-28
+BAJAJFINSV.NS: OK 112 days, last=2026-08-28
+BAJFINANCE.NS: OK 112 days, last=2026-08-28
+BERGEPAINT.NS: OK 112 days, last=2026-08-28
+BHARTIARTL.NS: OK 112 days, last=2026-08-28
+BPCL.NS: OK 112 days, last=2026-08-28
+BRITANNIA.NS: OK 112 days, last=2026-08-28
+CIPLA.NS: OK 112 days, last=2026-08-28
+COALINDIA.NS: OK 112 days, last=2026-08-28
+DABUR.NS: OK 112 days, last=2026-08-28
+DRREDDY.NS: OK 112 days, last=2026-08-28
+GODREJCP.NS: OK 112 days, last=2026-08-28
+GRASIM.NS: OK 112 days, last=2026-08-28
+HAVELLS.NS: OK 112 days, last=2026-08-28
+HCLTECH.NS: OK 112 days, last=2026-08-28
+HDFCBANK.NS: OK 112 days, last=2026-08-28
+HDFCLIFE.NS: OK 112 days, last=2026-08-28
+HINDALCO.NS: OK 112 days, last=2026-08-28
+HINDUNILVR.NS: OK 112 days, last=2026-08-28
+ICICIBANK.NS: OK 112 days, last=2026-08-28
+ICICIPRULI.NS: OK 112 days, last=2026-08-28
+INDUSINDBK.NS: OK 112 days, last=2026-08-28
+INFY.NS: OK 112 days, last=2026-08-28
+ITC.NS: OK 112 days, last=2026-08-28
+JSWSTEEL.NS: OK 112 days, last=2026-08-28
+LT.NS: OK 112 days, last=2026-08-28
+M&M.NS: OK 112 days, last=2026-08-28
+MARUTI.NS: OK 112 days, last=2026-08-28
+MPHASIS.NS: OK 112 days, last=2026-08-28
+NESTLEIND.NS: OK 112 days, last=2026-08-28
+NTPC.NS: OK 112 days, last=2026-08-28
+ONGC.NS: OK 112 days, last=2026-08-28
+PIDILITIND.NS: OK 112 days, last=2026-08-28
+POWERGRID.NS: OK 112 days, last=2026-08-28
+RELIANCE.NS: OK 112 days, last=2026-08-28
+SBILIFE.NS: OK 112 days, last=2026-08-28
+SBIN.NS: OK 112 days, last=2026-08-28
+SHREECEM.NS: OK 112 days, last=2026-08-28
+SUNPHARMA.NS: OK 112 days, last=2026-08-28
+TATACONSUM.NS: OK 112 days, last=2026-08-28
+TATAPOWER.NS: OK 112 days, last=2026-08-28
+TCS.NS: OK 112 days, last=2026-08-28
+TECHM.NS: OK 112 days, last=2026-08-28
+TITAN.NS: OK 112 days, last=2026-08-28
+UBL.NS: OK 112 days, last=2026-08-28
+ULTRACEMCO.NS: OK 112 days, last=2026-08-28
+VOLTAS.NS: OK 112 days, last=2026-08-28
+WIPRO.NS: OK 112 days, last=2026-08-28
+
+Combined: 2204 rows, 2017-10-03 to 2026-08-28
+Rows added: 106
+Saved: /home/pramod/hunain/NSE_Portfolio_GNN/data/raw/prices_51_aug2026.parquet

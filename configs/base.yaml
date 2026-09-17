@@ -1,0 +1,146 @@
+# ─────────────────────────────────────────────────────────────────────────────
+#  NSE Portfolio GNN — Master Configuration
+#  configs/base.yaml
+# ─────────────────────────────────────────────────────────────────────────────
+
+project:
+  name:    "NSE_Portfolio_GNN"
+  version: "1.0.0"
+  seed:    42
+
+# ── Universe ──────────────────────────────────────────────────────────────────
+universe:
+  n_stocks:  51
+  data_file: "data/raw/prices_51.parquet"
+  benchmark: "^NSEI"                   # Nifty 50 index for IR calculation
+
+  # Inherited from classification paper (Paper 1)
+  classification_signals: "data/processed/xgb_probabilities.parquet"
+  hmm_regimes:            "data/processed/hmm_states.parquet"
+
+# ── Date windows ──────────────────────────────────────────────────────────────
+dates:
+  data_start:   "2017-10-01"           # data available from
+  train_start:  "2018-01-01"           # walk-forward training begins
+  train_end:    "2024-12-31"           # walk-forward training ends
+  blind_start:  "2025-01-01"           # blind holdout begins
+  blind_end:    "2026-03-31"           # blind holdout ends
+
+# ── Walk-forward folds ────────────────────────────────────────────────────────
+walk_forward:
+  n_folds:          5
+  rebalance_freq:   "M"                # monthly rebalancing (first trading day)
+  min_train_years:  2                  # minimum 2 years before first test fold
+  purge_days:       5                  # gap between train end and test start
+
+  # Fold definitions (train_end / test window)
+  folds:
+    - {train_end: "2020-12-31", test_start: "2021-01-01", test_end: "2021-12-31"}
+    - {train_end: "2021-06-30", test_start: "2021-07-01", test_end: "2022-06-30"}
+    - {train_end: "2021-12-31", test_start: "2022-01-01", test_end: "2022-12-31"}
+    - {train_end: "2022-06-30", test_start: "2022-07-01", test_end: "2023-06-30"}
+    - {train_end: "2022-12-31", test_start: "2023-01-01", test_end: "2023-12-31"}
+
+# ── Portfolio constraints ─────────────────────────────────────────────────────
+constraints:
+  long_only:      true
+  max_weight:     0.15                 # 15% per stock cap
+  min_weight:     0.00                 # no shorting
+  full_invest:    true                 # weights sum to 1.0
+  transaction_cost_bps: 10            # 10 basis points per leg
+
+# ── HMM regime risk budgets ───────────────────────────────────────────────────
+regime:
+  n_states: 3
+  labels:   ["bear", "sideways", "bull"]
+  risk_aversion:                       # lambda in Markowitz objective
+    bull:     2.5
+    sideways: 4.0
+    bear:     7.0
+  max_weight_override:
+    bull:     0.15
+    sideways: 0.10
+    bear:     0.08
+
+# ── STGAT-DPO model ───────────────────────────────────────────────────────────
+stgat:
+  # Graph construction
+  graph:
+    corr_window:      21               # rolling correlation window (days)
+    corr_threshold:   0.25             # |ρ| > threshold → dynamic edge
+    sector_edges:     true             # always connect same-sector stocks
+
+  # Temporal encoding (LSTM per node)
+  temporal:
+    lookback:         20               # trading days in each input window
+    lstm_units:       64
+    dropout:          0.2
+
+  # Graph Attention Network
+  gat:
+    n_heads:          2
+    hidden_dim:       64
+    output_dim:       32
+    dropout:          0.2
+
+  # Portfolio optimization layer
+  opt_layer:
+    type: "differentiable_qp"          # "differentiable_qp" | "softmax_approx"
+    solver: "cvxpylayers"
+
+  # Training
+  training:
+    epochs:           100
+    batch_size:       32               # number of rebalancing windows per batch
+    lr:               0.001
+    lr_scheduler:     "cosine"
+    weight_decay:     1e-4
+    early_stop_patience: 15
+    loss:             "negative_information_ratio"
+
+# ── Benchmarks ────────────────────────────────────────────────────────────────
+benchmarks:
+  equal_weight:       true             # B1: 1/N
+  buy_hold:           true             # B2: EW, never rebalanced
+  mvo_max_sharpe:     true             # B3: classical Markowitz
+  risk_parity:        true             # B4: 1/σ weights
+  momentum:                            # B5: 12-1 month return sort
+    enabled:  true
+    top_n:    15
+    lookback: 252
+    skip:     21
+  black_litterman:    true             # B6: BL + XGBoost views
+  rl_ppo:                              # B7: PPO agent
+    enabled:  true
+    episodes: 500
+    gamma:    0.99
+    gae_lambda: 0.95
+    clip_eps: 0.2
+
+# ── Evaluation metrics ────────────────────────────────────────────────────────
+metrics:
+  primary:
+    - information_ratio                # IR vs Nifty 50 — primary target
+    - annualised_return
+    - annualised_volatility
+    - sharpe_ratio
+    - max_drawdown
+  secondary:
+    - sortino_ratio
+    - calmar_ratio
+    - monthly_turnover
+    - effective_n                      # diversification measure: 1/sum(w²)
+    - win_rate
+    - regime_conditional_sharpe        # Sharpe by HMM state
+  statistical_tests:
+    - jobson_korkie                    # SR equality test
+    - huberman_kandel_spanning         # mean-variance spanning
+    - bootstrap_ci                     # 10,000 replications
+    - stochastic_dominance             # FSD / SSD
+
+# ── Output paths ──────────────────────────────────────────────────────────────
+outputs:
+  results:     "outputs/results"
+  figures:     "outputs/figures"
+  checkpoints: "outputs/checkpoints"
+  logs:        "outputs/logs"

@@ -1,0 +1,37 @@
+# STGAT-DPO model and training hyperparameters — fixed globally across all folds, not tuned per fold.
+model:
+  lookback_window_days: 20
+  lstm_hidden_units: 64
+  lstm_dropout: 0.2
+  gat_layers: 2
+  gat_heads: 2
+  gat_hidden_dim: 64
+  factor_space_dim: 16
+  trainable_parameters: 65027
+
+optimization:
+  optimizer: Adam
+  learning_rate: 3e-4
+  weight_decay: 1e-4
+  lr_schedule: cosine_annealing
+  loss: "0.7 * (-InformationRatio) + 0.3 * MSE(predicted_returns, realized_returns)"
+
+portfolio_layer:
+  method: "differentiable_approximation (softplus non-negativity, rescaled-sigmoid cap, sum-normalization)"
+  cholesky_jitter: 1e-4
+  max_weight_cap: 0.15
+  regime_lambda: {bear: 7.0, sideways: 4.0, bull: 2.5}
+
+hmm_regime_detector:
+  n_states: 3
+  decoding: "causal (predict_causal) — expanding-window Viterbi, frozen training-set normalization stats, no look-ahead"
+  observation_features: ["daily_return", "21d_cumulative_return", "21d_annualized_volatility", "63d_volatility_of_volatility"]
+
+graph_construction:
+  correlation_window_days: 63
+  regime_thresholds: {bear: 0.45, sideways: 0.35, bull: 0.25}
+  sector_scaffold_weight: 0.7
+  dynamic_correlation_weight: 0.3
+  eligibility_buffer_days: 63
+
+seed: 42

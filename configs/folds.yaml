@@ -1,0 +1,24 @@
+# Walk-forward fold definitions (train_start, train_end, test_start, test_end)
+# Same 9-fold structure used across STGAT-DPO, all ablations, and all baselines.
+seed: 42
+folds:
+  Fold1: {train_start: "2018-01-01", train_end: "2020-12-31", test_start: "2021-01-01", test_end: "2021-12-31"}
+  Fold2: {train_start: "2018-01-01", train_end: "2021-06-30", test_start: "2021-07-01", test_end: "2022-06-30"}
+  Fold3: {train_start: "2018-01-01", train_end: "2021-12-31", test_start: "2022-01-01", test_end: "2022-12-31"}
+  Fold4: {train_start: "2018-01-01", train_end: "2022-06-30", test_start: "2022-07-01", test_end: "2023-06-30"}
+  Fold5: {train_start: "2018-01-01", train_end: "2022-12-31", test_start: "2023-01-01", test_end: "2023-12-31"}
+  Fold6: {train_start: "2018-01-01", train_end: "2023-06-30", test_start: "2023-07-01", test_end: "2024-06-30"}
+  Fold7: {train_start: "2018-01-01", train_end: "2023-12-31", test_start: "2024-01-01", test_end: "2024-12-31"}
+  Fold8: {train_start: "2018-01-01", train_end: "2024-06-30", test_start: "2024-07-01", test_end: "2025-06-30"}
+  Fold9: {train_start: "2018-01-01", train_end: "2024-12-31", test_start: "2025-01-01", test_end: "2025-12-31"}
+  Blind2025: {train_start: "2018-01-01", train_end: "2025-12-31", test_start: "2026-01-01", test_end: "2026-08-28"}
+
+validation:
+  method: "chronological_85_15_split_of_training_window"
+  note: "Last 15% of each fold's training samples (by date order) held out as validation. No embargo/purge gap between validation tail and test start — disclosed limitation (see paper Sec 3.2 / response to R1#4)."
+
+checkpoint_selection:
+  rule: "early_stopping_on_validation_loss"
+  patience_epochs: 20
+  max_epochs: 150
+  test_or_blind_data_used_in_selection: false
