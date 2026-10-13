@@ -15,4 +15,4 @@ export MKL_NUM_THREADS=1
 export OPENBLAS_NUM_THREADS=1
 export CUBLAS_WORKSPACE_CONFIG=:4096:8
 cd /home/pramod/hunain/NSE_Portfolio_GNN
-python training/run_sensitivity_allfolds.py
+python training/run_sensitivity_allfolds_v2.py

@@ -16,10 +16,6 @@ Newey-West HAC,STGAT-NoGAT vs Nifty50,t,1.2505,0.1057,False,False,
 Newey-West HAC,EW vs Nifty50,t,1.0083,0.1568,False,False,
 Newey-West HAC,MinVar vs Nifty50,t,-0.1144,0.5455,False,False,
 Newey-West HAC,RiskPar vs Nifty50,t,0.7531,0.2258,False,False,
-Stochastic Dominance,STGAT-DPO vs EW,FSD,0.0,0.000121,True,True,FSD=No SSD=Yes
-Stochastic Dominance,STGAT-DPO vs MinVar,FSD,0.0,0.001206,True,True,FSD=No SSD=Yes
-Stochastic Dominance,STGAT-DPO vs RiskPar,FSD,0.0,0.000348,True,True,FSD=No SSD=Yes
-Stochastic Dominance,STGAT-DPO vs Momentum,FSD,0.0,0.000397,True,True,FSD=No SSD=Yes
 Diebold-Mariano,STGAT-DPO vs STGAT-NoHMM,DM,-1.4346,0.0757,False,True,
 Diebold-Mariano,STGAT-DPO vs STGAT-NoGAT,DM,-1.475,0.0701,False,True,
 Diebold-Mariano,STGAT-DPO vs EW,DM,3.6712,0.9999,False,False,
