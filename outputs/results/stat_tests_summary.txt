@@ -2,23 +2,23 @@ Statistical Testing Summary — STGAT-DPO Portfolio Paper
 ============================================================
 
 1. Jobson-Korkie (Sharpe ratio test):
-   STGAT-DPO Sharpe = 0.7156
-   STGAT-DPO vs EW: Z=0.1308, p=0.436 
-   STGAT-DPO vs MinVar: Z=-0.1482, p=0.544 
-   STGAT-DPO vs RiskPar: Z=0.2343, p=0.392 
-   STGAT-DPO vs InvVol: Z=0.5511, p=0.2755 
-   STGAT-DPO vs BH: Z=0.5218, p=0.307 
-   STGAT-DPO vs Momentum: Z=0.1986, p=0.4255 
+   STGAT-DPO Sharpe = 0.6006
+   STGAT-DPO vs EW: Z=-0.0316, p=0.5225 
+   STGAT-DPO vs MinVar: Z=0.5184, p=0.3085 
+   STGAT-DPO vs RiskPar: Z=0.1995, p=0.427 
+   STGAT-DPO vs InvVol: Z=0.1865, p=0.4205 
+   STGAT-DPO vs BH: Z=0.1125, p=0.4705 
+   STGAT-DPO vs Momentum: Z=0.6802, p=0.255 
 
 2. Huberman-Kandel spanning test:
-   STGAT-DPO vs {EW, MinVar}: F=0.0613, p=0.9406 — H₀ not rejected
-   STGAT-DPO vs {EW, MinVar, RiskPar}: F=0.0335, p=0.967 — H₀ not rejected
-   STGAT-DPO vs {EW, MinVar, InvVol}: F=0.072, p=0.9305 — H₀ not rejected
+   STGAT-DPO vs {EW, MinVar}: F=0.0272, p=0.9732 — H₀ not rejected
+   STGAT-DPO vs {EW, MinVar, RiskPar}: F=0.135, p=0.8737 — H₀ not rejected
+   STGAT-DPO vs {EW, MinVar, InvVol}: F=0.1027, p=0.9024 — H₀ not rejected
 
 3. Newey-West HAC alpha test:
-   STGAT-DPO vs Nifty50: t=20.0258, p=0.0 ★
-   STGAT-NoHMM vs Nifty50: t=14.4319, p=0.0 ★
-   STGAT-NoGAT vs Nifty50: t=26.5994, p=0.0 ★
+   STGAT-DPO vs Nifty50: t=0.9993, p=0.1589 
+   STGAT-NoHMM vs Nifty50: t=0.6667, p=0.2526 
+   STGAT-NoGAT vs Nifty50: t=1.2505, p=0.1057 
 
 4. Bootstrap 95% CI on mean IR:
    STGAT-DPO: [0.040, 1.076] — ONLY strategy with CI > 0

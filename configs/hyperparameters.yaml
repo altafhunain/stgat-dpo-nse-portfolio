@@ -30,8 +30,8 @@ hmm_regime_detector:
 graph_construction:
   correlation_window_days: 63
   regime_thresholds: {bear: 0.45, sideways: 0.35, bull: 0.25}
-  sector_scaffold_weight: 0.7
-  dynamic_correlation_weight: 0.3
+  sector_scaffold_weight: 0.3
+  dynamic_correlation_weight: 0.7
   eligibility_buffer_days: 63
 
 seed: 42

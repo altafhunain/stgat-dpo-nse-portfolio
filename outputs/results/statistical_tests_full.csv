@@ -1,27 +1,27 @@
 test,comparison,stat_name,stat_val,p_value,significant_05,significant_10,extra
-Jobson-Korkie,STGAT-DPO vs EW,Z,0.1308,0.436,False,False,
-Jobson-Korkie,STGAT-DPO vs MinVar,Z,-0.1482,0.544,False,False,
-Jobson-Korkie,STGAT-DPO vs RiskPar,Z,0.2343,0.392,False,False,
-Jobson-Korkie,STGAT-DPO vs InvVol,Z,0.5511,0.2755,False,False,
-Jobson-Korkie,STGAT-DPO vs BH,Z,0.5218,0.307,False,False,
-Jobson-Korkie,STGAT-DPO vs Momentum,Z,0.1986,0.4255,False,False,
-Jobson-Korkie,STGAT-NoHMM vs EW,Z,-0.563,0.7135,False,False,
-Jobson-Korkie,STGAT-NoHMM vs MinVar,Z,-0.3911,0.6435,False,False,
-Huberman-Kandel,"STGAT-DPO vs {EW, MinVar}",F,0.0613,0.9406,False,False,
-Huberman-Kandel,"STGAT-DPO vs {EW, MinVar, RiskPar}",F,0.0335,0.967,False,False,
-Huberman-Kandel,"STGAT-DPO vs {EW, MinVar, InvVol}",F,0.072,0.9305,False,False,
-Newey-West HAC,STGAT-DPO vs Nifty50,t,20.0258,0.0,True,True,
-Newey-West HAC,STGAT-NoHMM vs Nifty50,t,14.4319,0.0,True,True,
-Newey-West HAC,STGAT-NoGAT vs Nifty50,t,26.5994,0.0,True,True,
-Newey-West HAC,EW vs Nifty50,t,19.1883,0.0,True,True,
-Newey-West HAC,MinVar vs Nifty50,t,8.8976,0.0,True,True,
-Newey-West HAC,RiskPar vs Nifty50,t,15.9435,0.0,True,True,
-Stochastic Dominance,STGAT-DPO vs EW,FSD,0.0,0.000254,True,True,FSD=No SSD=Yes
-Stochastic Dominance,STGAT-DPO vs MinVar,FSD,0.0,0.000477,True,True,FSD=No SSD=Yes
-Stochastic Dominance,STGAT-DPO vs RiskPar,FSD,0.0,0.000416,True,True,FSD=No SSD=Yes
-Stochastic Dominance,STGAT-DPO vs Momentum,FSD,0.0,-0.00065,False,False,FSD=No SSD=No
-Diebold-Mariano,STGAT-DPO vs STGAT-NoHMM,DM,-0.9263,0.1772,False,False,
-Diebold-Mariano,STGAT-DPO vs STGAT-NoGAT,DM,-0.7771,0.2185,False,False,
-Diebold-Mariano,STGAT-DPO vs EW,DM,2.5201,0.9941,False,False,
-Diebold-Mariano,STGAT-DPO vs MinVar,DM,-7.059,0.0,True,True,
-Diebold-Mariano,STGAT-DPO vs RiskPar,DM,1.213,0.8874,False,False,
+Jobson-Korkie,STGAT-DPO vs EW,Z,-0.0316,0.5225,False,False,
+Jobson-Korkie,STGAT-DPO vs MinVar,Z,0.5184,0.3085,False,False,
+Jobson-Korkie,STGAT-DPO vs RiskPar,Z,0.1995,0.427,False,False,
+Jobson-Korkie,STGAT-DPO vs InvVol,Z,0.1865,0.4205,False,False,
+Jobson-Korkie,STGAT-DPO vs BH,Z,0.1125,0.4705,False,False,
+Jobson-Korkie,STGAT-DPO vs Momentum,Z,0.6802,0.255,False,False,
+Jobson-Korkie,STGAT-NoHMM vs EW,Z,-0.6515,0.746,False,False,
+Jobson-Korkie,STGAT-NoHMM vs MinVar,Z,0.2999,0.3905,False,False,
+Huberman-Kandel,"STGAT-DPO vs {EW, MinVar}",F,0.0272,0.9732,False,False,
+Huberman-Kandel,"STGAT-DPO vs {EW, MinVar, RiskPar}",F,0.135,0.8737,False,False,
+Huberman-Kandel,"STGAT-DPO vs {EW, MinVar, InvVol}",F,0.1027,0.9024,False,False,
+Newey-West HAC,STGAT-DPO vs Nifty50,t,0.9993,0.1589,False,False,
+Newey-West HAC,STGAT-NoHMM vs Nifty50,t,0.6667,0.2526,False,False,
+Newey-West HAC,STGAT-NoGAT vs Nifty50,t,1.2505,0.1057,False,False,
+Newey-West HAC,EW vs Nifty50,t,1.0083,0.1568,False,False,
+Newey-West HAC,MinVar vs Nifty50,t,-0.1144,0.5455,False,False,
+Newey-West HAC,RiskPar vs Nifty50,t,0.7531,0.2258,False,False,
+Stochastic Dominance,STGAT-DPO vs EW,FSD,0.0,0.000121,True,True,FSD=No SSD=Yes
+Stochastic Dominance,STGAT-DPO vs MinVar,FSD,0.0,0.001206,True,True,FSD=No SSD=Yes
+Stochastic Dominance,STGAT-DPO vs RiskPar,FSD,0.0,0.000348,True,True,FSD=No SSD=Yes
+Stochastic Dominance,STGAT-DPO vs Momentum,FSD,0.0,0.000397,True,True,FSD=No SSD=Yes
+Diebold-Mariano,STGAT-DPO vs STGAT-NoHMM,DM,-1.4346,0.0757,False,True,
+Diebold-Mariano,STGAT-DPO vs STGAT-NoGAT,DM,-1.475,0.0701,False,True,
+Diebold-Mariano,STGAT-DPO vs EW,DM,3.6712,0.9999,False,False,
+Diebold-Mariano,STGAT-DPO vs MinVar,DM,-7.7548,0.0,True,True,
+Diebold-Mariano,STGAT-DPO vs RiskPar,DM,2.0636,0.9805,False,False,

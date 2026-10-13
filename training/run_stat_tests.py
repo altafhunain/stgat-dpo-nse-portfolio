@@ -61,7 +61,7 @@ def load_returns():
         series[col] = bench_ret[col].sort_index()
 
     # Align all to walk-forward period
-    S, E = pd.Timestamp("2021-01-01"), pd.Timestamp("2024-12-31")
+    S, E = pd.Timestamp("2021-01-01"), pd.Timestamp("2025-12-31")
     aligned = {}
     for k, v in series.items():
         s = v.loc[S:E].fillna(0)
@@ -201,8 +201,8 @@ def newey_west_ttest(active_returns: np.ndarray,
         gamma_h = np.mean(r[h:] * r[:-h])
         hac_var += 2 * w * gamma_h
 
-    se  = np.sqrt(hac_var / T) * np.sqrt(252)   # annualised
-    t   = mu * 252 / (se + 1e-10)
+    se  = np.sqrt(hac_var / T)   # std. error of the DAILY mean
+    t   = mu / (se + 1e-10)
     p   = 1 - stats.t.cdf(t, df=T - 1)          # one-sided
     return float(t), float(p)
 
@@ -284,7 +284,7 @@ def diebold_mariano(r_a: np.ndarray, r_b: np.ndarray,
         cov  = np.mean(r[lag:] * r[:-lag])
         var += 2 * w * cov
 
-    se  = np.sqrt((var + 1e-10) / T)
+    se  = np.sqrt((var + 1e-24) / T)
     dm  = mu / se
     p   = stats.norm.cdf(dm)   # one-sided: A < B
     return float(dm), float(p)

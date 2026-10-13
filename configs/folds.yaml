@@ -15,7 +15,7 @@ folds:
 
 validation:
   method: "chronological_85_15_split_of_training_window"
-  note: "Last 15% of each fold's training samples (by date order) held out as validation. No embargo/purge gap between validation tail and test start — disclosed limitation (see paper Sec 3.2 / response to R1#4)."
+  note: "Last 15% of each fold's training samples (by date order) held out as validation. No embargo/purge gap between validation tail and test start — disclosed limitation (see paper Sec 3.5 / response to R1#4)."
 
 checkpoint_selection:
   rule: "early_stopping_on_validation_loss"
