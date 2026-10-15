@@ -4,10 +4,10 @@ training/compute_bootstrap_ci.py
 Percentile bootstrap 95% CI on mean walk-forward Information Ratio,
 computed properly (fold-level resampling) for every strategy, replacing
 the previously hardcoded, untraceable [0.040, 1.076] figure.
-Method: resample the 6 walk-forward fold-level IR values with
+Method: resample the 9 walk-forward fold-level IR values with
 replacement, recompute the mean IR each draw, repeat N_BOOT times,
 take the 2.5th/97.5th percentiles as the 95% CI. This is a small-sample
-bootstrap (n=6 folds) and is reported as such.
+bootstrap (n=9 folds) and is reported as such.
 """
 import os
 os.environ["OMP_NUM_THREADS"] = "1"
@@ -18,9 +18,9 @@ import pandas as pd
 
 SEED = 42
 N_BOOT = 10000
-rng = np.random.default_rng(SEED)
 
 def bootstrap_ci(fold_irs, n_boot=N_BOOT):
+    rng = np.random.default_rng(SEED)  # fresh identical seed per strategy: result independent of call order
     fold_irs = np.asarray(fold_irs)
     n = len(fold_irs)
     boot_means = np.empty(n_boot)
@@ -45,9 +45,9 @@ sources = [
 ]
 
 print("="*90)
-print("  BOOTSTRAP 95% CI ON MEAN WALK-FORWARD IR (fold-level percentile bootstrap, n=6 folds)")
+print("  BOOTSTRAP 95% CI ON MEAN WALK-FORWARD IR (fold-level percentile bootstrap, n=9 folds)")
 print("="*90)
-print(f"  {'Strategy':<14} {'Mean IR':>9} {'CI Low':>9} {'CI High':>9} {'Excl.0':>7}  Data vintage")
+print(f"  {'Strategy':<14} {'Mean IR':>9} {'CI Low':>9} {'CI High':>9} {'vs zero':>8}  Data vintage")
 print("  " + "-"*88)
 
 results = []
@@ -58,8 +58,8 @@ for label, path, strat, vintage in sources:
             print(f"  {label:<14}  WARNING: found {len(irs)} folds, expected 9 -- skipping")
             continue
         mean_ir, lo, hi = bootstrap_ci(irs)
-        excl = "YES" if lo > 0 else "no"
-        print(f"  {label:<14} {mean_ir:>9.4f} {lo:>9.4f} {hi:>9.4f} {excl:>7}  {vintage}")
+        excl = "above 0" if lo > 0 else ("below 0" if hi < 0 else "spans 0")
+        print(f"  {label:<14} {mean_ir:>9.4f} {lo:>9.4f} {hi:>9.4f} {excl:>8}  {vintage}")
         results.append((label, mean_ir, lo, hi))
     except Exception as e:
         print(f"  {label:<14}  ERROR: {e}")
@@ -76,7 +76,7 @@ for strat in bench_strats:
         print(f"  {strat:<14}  WARNING: found {len(irs)} folds, expected 9 -- skipping")
         continue
     mean_ir, lo, hi = bootstrap_ci(irs)
-    excl = "YES" if lo > 0 else "no"
-    print(f"  {strat:<14} {mean_ir:>9.4f} {lo:>9.4f} {hi:>9.4f} {excl:>7}")
+    excl = "above 0" if lo > 0 else ("below 0" if hi < 0 else "spans 0")
+    print(f"  {strat:<14} {mean_ir:>9.4f} {lo:>9.4f} {hi:>9.4f} {excl:>8}")
 
 print("\nDone.")
