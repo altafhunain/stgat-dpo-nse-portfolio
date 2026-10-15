@@ -39,3 +39,7 @@ SEED = 42, shared across model training, all baselines, and the HMM regime detec
 ## Contact
 
 hunain_2022phacse009@nitsri.ac.in
+
+Figures. The cumulative-growth, drawdown and daily-return-distribution figures are regenerated from the released CSVs by: python training/make_cumulative_figures.py (each date is counted once; the per-fold return files overlap by six months, and earlier versions of these figures double-counted the overlap). The scripts in training/legacy/ and the diagnostic plots written by train_stgat.py and run_benchmarks.py are superseded: they stack the overlapping fold windows, so their cumulative-growth and drawdown plots should not be used.
+
+Figures. The cumulative-growth, drawdown and daily-return-distribution figures are regenerated from the released CSVs by: python training/make_cumulative_figures.py (each date is counted once; the per-fold return files overlap by six months, and earlier versions of these figures double-counted the overlap). The scripts in training/legacy/ and the diagnostic plots written by train_stgat.py and run_benchmarks.py are superseded: they stack the overlapping fold windows, so their cumulative-growth and drawdown plots should not be used.
